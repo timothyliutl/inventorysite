@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React2, { Component } from 'react';
 import './App.css';
 import SiteNavbar from './Navbar';
 import HomePageContent from './homepage';
@@ -10,22 +10,11 @@ import {
 } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
-
-
 class App extends Component<any, any>{
   state = {
     darkMode: false
   }
   render() {
-    const styles = makeStyles({
-      lightModeText:{
-        color: "black"
-      },
-      darkModeText:{
-        color:"#04d9ff"
-      }
-    })
-    const classes = styles();
 
     const darkModeToggle = () => {
       this.setState({ darkMode: !this.state.darkMode });
