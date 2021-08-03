@@ -3,15 +3,9 @@ import { useState } from 'react';
 import { Nav, Navbar, Container, Button, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Icon from 'react-bootstrap-icons';
-
-
-//TODO: make this nav bar responsive and add a dropdown 
-
-const SiteNavbar = (props: any) => {
-
-
-    return (
-        <div>
+//component for navbar when it has shrunk
+const Navbarsm = (props:any) => {
+<div>
             <Navbar bg={props.darkmodeOn ? 'dark' : 'primary'} expand="sm" variant={props.darkmodeOn ? 'dark' : 'light'}>
                 <Container>
                     
@@ -30,7 +24,7 @@ const SiteNavbar = (props: any) => {
                     </Navbar.Collapse>
                     <Nav style={{width: "100px"}}>
                         
-                        <Button style={{marginRight:"15px"}} onClick={props.darkmode} variant={props.darkmodeOn ? 'dark' : 'primary'}>
+                        <Button onClick={props.darkmode} variant={props.darkmodeOn ? 'dark' : 'primary'}>
                             {props.darkmodeOn ? <Icon.MoonStars></Icon.MoonStars> : <Icon.Sun></Icon.Sun>}
                         </Button>
 
@@ -44,8 +38,6 @@ const SiteNavbar = (props: any) => {
             </Navbar>
             
         </div>
-    )
-
-
 }
-export default SiteNavbar;
+
+export default Navbarsm;
