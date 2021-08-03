@@ -1,15 +1,12 @@
 import React from 'react';
-import { Component } from 'react';
-
-class Tableview extends Component {
-    render() {
 
 
-        return (
-            <div>
+const Tableview = () =>{
+    return(
+        <div>
 
-            </div>)
-    }
+        </div>
+    )
 }
 
 export default Tableview;
