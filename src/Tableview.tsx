@@ -11,7 +11,7 @@ const Tableview = (props: any) => {
         },
         darkModeText: {
             color: "#04d9ff",
-            backgroundColor:"#333333",
+            
             transition: "background-color 1s",
         }
     })
@@ -28,23 +28,25 @@ const Tableview = (props: any) => {
             <Container>
                 <Table stickyHeader>
                     <TableHead>
-                        <TableRow className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>
-                            {tableNames.map((table)=>(
-                                <TableCell style={{fontWeight:'bold'}} align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{table}</TableCell>
+                        <TableRow>
+                            {tableNames.map((table) => (
+                                <TableCell style={{ fontWeight: 'bold', backgroundColor: "rgba(0,0,0,0)"}} align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{table}</TableCell>
                             ))}
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {
-                            tableEntries.map((entry)=>{
-                                <TableRow>
-                                    <TableCell style={{fontWeight:'bold'}} align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{entry.name}</TableCell>
-                                    <TableCell style={{fontWeight:'bold'}} align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{entry.description}</TableCell>
-                                    <TableCell style={{fontWeight:'bold'}} align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{entry.location}</TableCell>
-                                    <TableCell style={{fontWeight:'bold'}} align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{entry.image}</TableCell>
-                                </TableRow>
-                            })
-                        }
+                    {tableEntries.map((table)=>(
+                        <TableRow>
+                            <TableCell align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{table.name}</TableCell>
+                            <TableCell align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{table.description}</TableCell>
+                            <TableCell align={'center'} className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText}>{table.location}</TableCell>
+                            <TableCell align={'center'}><img style={{maxHeight:"50px"}} src={table.image}></img></TableCell>
+                            
+                        </TableRow>
+                    ))}
+
+
+
                     </TableBody>
                 </Table>
             </Container>
