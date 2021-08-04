@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Nav, Navbar, Container, Button, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Icon from 'react-bootstrap-icons';
-//component for navbar when it has shrunk
+//component for navbar when the window is small, or on mobile
 const Navbarsm = (props:any) => {
 <div>
             <Navbar bg={props.darkmodeOn ? 'dark' : 'primary'} expand="sm" variant={props.darkmodeOn ? 'dark' : 'light'}>

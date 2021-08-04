@@ -44,7 +44,7 @@ class App extends Component<any, any>{
               <HomePageContent darkmodeOn={this.state.darkMode}></HomePageContent>
             </Route>
             <Route path="/table" exact>
-            <SiteNavbar darkmode={darkModeToggle} darkmodeOn={this.state.darkMode}></SiteNavbar>
+              <SiteNavbar darkmode={darkModeToggle} darkmodeOn={this.state.darkMode}></SiteNavbar>
               <Tableview darkmodeOn={this.state.darkMode}></Tableview>
             </Route>
           </Switch>
