@@ -20,7 +20,7 @@ const Navbarsm = (props: any) => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
                     <Navbar.Collapse>
-                        <Nav >
+                        <Nav>
                             <Nav.Link>Home</Nav.Link>
                             <Nav.Link>Tutorials</Nav.Link>
                             <Nav.Link>FAQ</Nav.Link>

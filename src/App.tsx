@@ -1,4 +1,4 @@
-import React2, { Component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import SiteNavbar from './Navbar';
 import HomePageContent from './homepage';

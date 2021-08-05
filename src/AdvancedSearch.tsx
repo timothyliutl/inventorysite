@@ -1,11 +1,15 @@
-import { makeStyles, Typography } from '@material-ui/core';
+import { Checkbox, FormControl, FormControlLabel, FormGroup, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 
 const AdvancedSearch = (props: any) => {
     const categories = [{
         name: "Testing Equipment",
-        subcategories: ["Computers", "Voltmeters", "Batteries"]
+        subcategories: ["USB Cables", "Voltmeters", "Batteries"]
+    },
+    {
+        name: "Computers",
+        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
     }]
     const styles = makeStyles({
         lightModeText: {
@@ -31,7 +35,7 @@ const AdvancedSearch = (props: any) => {
             transition: "background-color 1s",
         },
         secondaryDarkMode: {
-            color: "#8ffcff",
+            color: "#f14235",
         }
 
 
@@ -39,44 +43,39 @@ const AdvancedSearch = (props: any) => {
     const classes = styles();
 
     return (
-        <div style={{ width: "60%", marginLeft: "auto", marginRight: "auto" }}>
-            <Typography variant={'h5'} className={props.darkmodeOn ? classes.inputDarkMode : ""}>
-                Filters
-            </Typography>
-            <hr style={props.darkmodeOn ? { color: "white" } : {}}></hr>
+        <div style={{ width: "90%", marginLeft: "auto", marginRight: "auto" }}>
+
             <Row>
                 {/*Column corresponds to category checkboxes for advanced search*/}
                 <Col>
-                    <u className={props.darkmodeOn ? classes.inputDarkMode : ""}>
-                        <h5 className={props.darkmodeOn ? classes.inputDarkMode : ""}>Category</h5>
-                    </u>
-                    {categories.map((category) => (
 
-                        <div>
-                            <Typography className={props.darkmodeOn ? classes.inputDarkMode : ""}>{category.name}</Typography>
-                            {category.subcategories.map((subcat) => {
-                                <h6>{subcat}</h6>
-                            })}
-                        </div>
+                    <FormControl>
 
-                    )
-                    )}
+                        <h3 style={{ marginBottom: "20px" }} className={props.darkmodeOn ? classes.inputDarkMode : ""}>Category</h3>
+                        <Container>
+                            {categories.map((category) => (
+                                <div>
+                                    <Typography variant={'h6'} className={props.darkmodeOn ? classes.secondaryDarkMode : ""}>{category.name}</Typography>
+                                    <Container>
+                                        <FormGroup>
+                                            {category.subcategories.map((subcat) => (
+                                                <div>
+                                                    <FormControlLabel className={props.darkmodeOn ? classes.inputDarkMode : ""} control={<Checkbox style={{ color: "#04d9ff" }}></Checkbox>} label={subcat} />
+                                                </div>
+                                            ))}
+                                        </FormGroup>
+                                    </Container>
+                                </div>
+                            )
+                            )}
+                        </Container>
 
+                    </FormControl>
 
-                </Col>
-                <Col>
-                    <u className={props.darkmodeOn ? classes.inputDarkMode : ""}>
-                        <h5 className={props.darkmodeOn ? classes.inputDarkMode : ""}>Date Added</h5>
-                    </u>
-                </Col>
-                <Col>
-                    <u className={props.darkmodeOn ? classes.inputDarkMode : ""}>
-                        <h5 className={props.darkmodeOn ? classes.inputDarkMode : ""}>Location</h5>
-                    </u>
                 </Col>
             </Row>
 
         </div>
-        )
+    )
 }
 export default AdvancedSearch;

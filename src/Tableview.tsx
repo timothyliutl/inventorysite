@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Icon from 'react-bootstrap-icons';
-import { Button, Col, FloatingLabel, Form, Row } from 'react-bootstrap';
+import { Button, Col, FloatingLabel, Form, Row, Modal } from 'react-bootstrap';
+import AdvancedSearch from './AdvancedSearch';
 //styles for light and darkmode states
 const Tableview = (props: any) => {
     const styles = makeStyles({
@@ -30,6 +31,15 @@ const Tableview = (props: any) => {
         },
         secondaryDarkMode: {
             color: "#8ffcff",
+        },
+        modalStyleing:{
+            width: "90vw"
+        },
+        modalDarkMode:{
+            color:"#8ffcff",
+        },
+        modalBodyDark:{
+            backgroundColor:"#212529"
         }
 
 
@@ -49,9 +59,13 @@ const Tableview = (props: any) => {
         image: "https://m.economictimes.com/thumb/msid-75599193,width-1200,height-900,resizemode-4,imgsize-66789/the-option-to-disable-pmis-can-be-locked-at-the-account-or-group-level-.jpg"
     }
     ];
-
-
-    ;
+        const [show, setShow] = useState(false);
+        const handleClose = () =>{
+            setShow(false);
+        }
+        const handleShow = () =>{
+            setShow(true);
+        }
 
     return (
         <div>
@@ -66,12 +80,25 @@ const Tableview = (props: any) => {
                 </Row>
                 <Row>
                     <div style={{display:"flex", justifyContent:"flex-end"}}>
-                        <Button style={{marginTop:"20px"}} variant={props.darkmodeOn?"outline-info":"primary"}>
+                        <Button style={{marginTop:"20px"}} variant={props.darkmodeOn?"outline-info":"primary"} onClick={handleShow}>
                             <Typography variant={'subtitle1'}>Advanced Search</Typography>
                         </Button>
                     </div>
                 </Row>
             </div>
+            <Modal className={props.darkmodeOn?classes.modalDarkMode:""} size="lg" show={show} onHide={handleClose} backdrop={'static'}>
+                <Modal.Header className={props.darkmodeOn?classes.modalBodyDark:""}>
+                    <Modal.Title>Search Filters</Modal.Title>
+                    <Button variant={props.darkmodeOn?"outline-info":"primary"} onClick={handleClose}>
+                        <Icon.X size={'30'}></Icon.X>
+                    </Button>
+                    
+                </Modal.Header>
+                <Modal.Body className={props.darkmodeOn?classes.modalBodyDark:""}>
+                    <AdvancedSearch darkmodeOn={props.darkmodeOn}></AdvancedSearch>
+                </Modal.Body>
+            </Modal>
+
             <Container>
                 <Table stickyHeader>
                     <TableHead>
@@ -90,13 +117,10 @@ const Tableview = (props: any) => {
                                 <TableCell align={'center'}><img style={{ maxHeight: "50px" }} src={table.image}></img></TableCell>
                             </TableRow>
                         ))}
-
-
-
                     </TableBody>
                 </Table>
             </Container>
-
+            
         </div>
     )
 }
