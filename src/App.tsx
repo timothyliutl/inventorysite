@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Tableview from './Tableview';
+import ItemPage from './Pages/ItemPage';
 
 class App extends Component<any, any>{
   state = {
@@ -46,6 +47,10 @@ class App extends Component<any, any>{
             <Route path="/table" exact>
               <SiteNavbar darkmode={darkModeToggle} darkmodeOn={this.state.darkMode}></SiteNavbar>
               <Tableview darkmodeOn={this.state.darkMode}></Tableview>
+            </Route>
+            <Route path={"/itempage"} exact>
+              <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
+              <ItemPage darkmodeOn={this.state.darkMode}></ItemPage>
             </Route>
           </Switch>
         </Router>

@@ -86,13 +86,12 @@ const Tableview = (props: any) => {
                     </div>
                 </Row>
             </div>
-            <Modal className={props.darkmodeOn?classes.modalDarkMode:""} size="lg" show={show} onHide={handleClose} backdrop={'static'}>
+            <Modal className={props.darkmodeOn?classes.modalDarkMode:""} size="lg" show={show} onHide={handleClose}>
                 <Modal.Header className={props.darkmodeOn?classes.modalBodyDark:""}>
                     <Modal.Title>Search Filters</Modal.Title>
                     <Button variant={props.darkmodeOn?"outline-info":"primary"} onClick={handleClose}>
                         <Icon.X size={'30'}></Icon.X>
                     </Button>
-                    
                 </Modal.Header>
                 <Modal.Body className={props.darkmodeOn?classes.modalBodyDark:""}>
                     <AdvancedSearch darkmodeOn={props.darkmodeOn}></AdvancedSearch>

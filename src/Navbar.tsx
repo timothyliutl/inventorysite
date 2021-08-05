@@ -60,9 +60,7 @@ const SiteNavbar = (props: any) => {
                         <Button style={{marginRight:"15px"}} onClick={props.darkmode} variant={props.darkmodeOn ? 'dark' : 'primary'}>
                             {props.darkmodeOn ? <Icon.MoonStars style={{color:"#04d9ff"}}></Icon.MoonStars> : <Icon.Sun></Icon.Sun>}
                         </Button>
-
-
-                        <Button variant={'outline-info'}>Login</Button>
+                        <Button variant={props.darkmodeOn?'outline-info':'primary'}>Login</Button>
 
                     </Nav>
                     
