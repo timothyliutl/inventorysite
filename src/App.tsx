@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tableview from './Tableview';
 import ItemPage from './Pages/ItemPage';
 import CategorySearch from './Pages/CategorySearch';
-
+import "./index.css"
 class App extends Component<any, any>{
   state = {
     darkMode: false
@@ -25,7 +25,7 @@ class App extends Component<any, any>{
     const divStyleDark = {
       backgroundColor: "#15202B",
       height: "100%",
-      
+      minHeight: '100vh',
       transition: "background-color 1s",
 
     }

@@ -34,7 +34,7 @@ const HomePageContent = (props: any) => {
     }
 
     return (
-        <div style={{height: '100vh'}}>
+        <div style={{minHeight: '100vh'}}>
             <Container>
                 <Row className={'align-items-center'}>
                     <Col>
