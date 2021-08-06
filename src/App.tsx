@@ -24,18 +24,18 @@ class App extends Component<any, any>{
     }
     const divStyleDark = {
       backgroundColor: "#15202B",
-      height: "100vh",
+      height: "100%",
+      
       transition: "background-color 1s",
 
     }
     const divStyleLight = {
       backgroundColor: "white",
-      height: "100vh",
+      height: "100%",
+      
       transition: "background-color 1s",
 
     }
-    //TODO: work on routing for the pages
-    //TODO: use material ui to implement styles
 
     return (
       <div style={this.state.darkMode ? divStyleDark : divStyleLight}>
@@ -55,7 +55,7 @@ class App extends Component<any, any>{
             </Route>
             <Route path={'/categorysearch'} exact>
               <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
-              <CategorySearch></CategorySearch>
+              <CategorySearch darkmodeOn={this.state.darkMode}></CategorySearch>
             </Route>
           </Switch>
         </Router>
