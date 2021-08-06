@@ -13,6 +13,8 @@ import Tableview from './Tableview';
 import ItemPage from './Pages/ItemPage';
 import CategorySearch from './Pages/CategorySearch';
 import "./index.css"
+
+
 class App extends Component<any, any>{
   state = {
     darkMode: false
@@ -32,10 +34,12 @@ class App extends Component<any, any>{
     const divStyleLight = {
       backgroundColor: "white",
       height: "100%",
-      
+      minHeight: '100vh',
       transition: "background-color 1s",
 
     }
+    //darkmodeOn: state of darkmode for all functional components
+    //darkModeToggle: function for changing the state of darkmode for whole web app
 
     return (
       <div style={this.state.darkMode ? divStyleDark : divStyleLight}>
