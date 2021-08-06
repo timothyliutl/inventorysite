@@ -13,6 +13,7 @@ import Tableview from './Tableview';
 import ItemPage from './Pages/ItemPage';
 import CategorySearch from './Pages/CategorySearch';
 import "./index.css"
+import Footer from './Components/Footer';
 
 
 class App extends Component<any, any>{
@@ -60,6 +61,7 @@ class App extends Component<any, any>{
             <Route path={'/categorysearch'} exact>
               <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
               <CategorySearch darkmodeOn={this.state.darkMode}></CategorySearch>
+              <Footer darkmodeOn={this.state.darkMode}></Footer>
             </Route>
           </Switch>
         </Router>
