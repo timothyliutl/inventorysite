@@ -1,8 +1,14 @@
 import { makeStyles, Typography } from '@material-ui/core';
-import React from 'react';
+import React, { ReactChild, ReactChildren } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 
-const InfoContainer = (props: any) => {
+//interface used to tell typescript what we are expecting for the props
+interface input{
+    darkmodeOn:boolean,
+    title: string,
+    children: ReactChild | ReactChildren
+}
+const InfoContainer = (props: input) => {
 
     const styles = makeStyles({
         lightModeText: {
@@ -32,6 +38,9 @@ const InfoContainer = (props: any) => {
             padding: "10px",
             
             backgroundColor: "#0275d8"
+        },
+        infoContainerDarkStyle:{
+            backgroundColor:"#04d9ff"
         }
     })
     const titleComponent = (title:string) => {
