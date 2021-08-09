@@ -1,0 +1,17 @@
+.fade-in-image{
+    animation: fadeIn 5s;
+}
+
+.fade-out-image{
+    animation:fadeOut 5s;
+}
+
+@keyframes fadeIn{
+    0% {opacity: 0; scale: 80%;}
+    100% {opacity: 1; scale: 100%;}
+}
+
+@keyframes fadeOut{
+    0% {opacity: 1; scale: 100%;}
+    100% {opacity: 0; scale: 80%;}
+}

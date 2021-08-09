@@ -47,7 +47,7 @@ const InfoContainer = (props: input) => {
         if (title) {
             return (
                 <div>
-                    <Typography variant={'h4'}>{props.title}</Typography>
+                    <Typography variant={'h3'}>{props.title}</Typography>
                     <hr></hr>
                 </div>
 
