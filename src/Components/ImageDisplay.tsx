@@ -21,7 +21,7 @@ const ImageDisplay = (props:propsType) =>{
 
     const [image, setImage] = useState(testURLs[0].url);
     const [inProp, setInProp] = useState(false);
-    const [glow, setGlow] = useState("")
+    const [glow, setGlow] = useState(testURLs[0].id)
 
     const updateImage = (e:React.MouseEvent<HTMLImageElement>) =>{
         const img = e.currentTarget as HTMLImageElement;
