@@ -14,6 +14,7 @@ import ItemPage from './Pages/ItemPage';
 import CategorySearch from './Pages/CategorySearch';
 import "./index.css"
 import Footer from './Components/Footer';
+import TutorialVideoPage from './Pages/TutorialVideoPage';
 
 
 class App extends Component<any, any>{
@@ -61,6 +62,11 @@ class App extends Component<any, any>{
             <Route path={'/categorysearch'} exact>
               <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
               <CategorySearch darkmodeOn={this.state.darkMode}></CategorySearch>
+              <Footer darkmodeOn={this.state.darkMode}></Footer>
+            </Route>
+            <Route path={'/video'} exact>
+              <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
+              <TutorialVideoPage></TutorialVideoPage>
               <Footer darkmodeOn={this.state.darkMode}></Footer>
             </Route>
           </Switch>

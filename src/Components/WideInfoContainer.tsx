@@ -12,7 +12,7 @@ interface propsTypes {
 const WideInfoContainer = (props: propsTypes) => {
     const styles = makeStyles({
         container: {
-            width: '800px',
+            width: '100%',
             minHeight: '200px',
             backgroundColor: '#FFBF86',
             borderRadius: '25px',
