@@ -66,7 +66,7 @@ class App extends Component<any, any>{
             </Route>
             <Route path={'/video'} exact>
               <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
-              <TutorialVideoPage></TutorialVideoPage>
+              <TutorialVideoPage darkmodeOn={this.state.darkMode}></TutorialVideoPage>
               <Footer darkmodeOn={this.state.darkMode}></Footer>
             </Route>
           </Switch>
