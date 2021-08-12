@@ -2,7 +2,17 @@ import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import CardComponent from '../Components/CardComponent';
 
+interface categoryTypes{
+    name: string,
+    description: string,
+    subcat: Array<categoryTypes>
+}
+
+interface propTypes{
+    darkmodeOn: boolean
+}
 const CategorySearch = (props: any) => {
+
 
     const styles = makeStyles({
         lightModeText: {
