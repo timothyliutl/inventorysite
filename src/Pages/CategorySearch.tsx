@@ -1,17 +1,50 @@
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CardComponent from '../Components/CardComponent';
 
-interface categoryTypes{
-    name: string,
-    description: string,
-    subcat: Array<categoryTypes>
+interface categoryTypes {
+    name?: string,
+    description?: string,
+    subcat?: Array<categoryTypes>,
+    url?: string
 }
 
-interface propTypes{
+interface propTypes {
     darkmodeOn: boolean
 }
+
 const CategorySearch = (props: any) => {
+
+    const [categoryList, setCategoryList] = useState([]);
+    useEffect(() => {
+        fetch('http://uglabs.phy.queensu.ca/inventory/html2php/ajaxGetCategory.php', {
+            method: 'POST', 
+            
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+          }).then(function (response) {
+              
+            return response.json()
+        }).then(function(json){
+            console.log(json)
+            setCategoryList(json)
+        }, (error)=>{
+            console.log(error)
+        })
+    },[])
+    
+    
+
+    const sampleCategories: categoryTypes = {
+        name: "Tutorials",
+        description: "Sample Category",
+        subcat: [],
+        url: 'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'
+    }
+    const samplelist:any = categoryList;
+    console.log(categoryList[0])
 
 
     const styles = makeStyles({
@@ -21,11 +54,11 @@ const CategorySearch = (props: any) => {
         darkModeText: {
             color: "#04d9ff"
         },
-        hrStyleDark:{
+        hrStyleDark: {
             color: "#04d9ff"
         },
-        whiteShadow:{
-            "&:hover":{
+        whiteShadow: {
+            "&:hover": {
                 boxShadow: "0px 0px 10px 2px white !important"
             }
         }
@@ -36,7 +69,7 @@ const CategorySearch = (props: any) => {
         <div>
             <Container>
                 <Container>
-                    <Typography className={props.darkmodeOn?classes.darkModeText:classes.lightModeText} style={{marginTop: "30px"}} variant={'h3'}>Quick Links</Typography>
+                    <Typography className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText} style={{ marginTop: "30px" }} variant={'h3'}>Quick Links</Typography>
                 </Container>
                 <Grid spacing={7} container justifyContent={'center'}>
                     <Grid item>
@@ -46,38 +79,19 @@ const CategorySearch = (props: any) => {
                         <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
                     </Grid>
                 </Grid>
-                <hr className={props.darkmodeOn?classes.hrStyleDark:""} style={{marginTop:'70px', marginBottom:'70px', height: '3px'}}></hr>
+                <hr className={props.darkmodeOn ? classes.hrStyleDark : ""} style={{ marginTop: '70px', marginBottom: '70px', height: '3px' }}></hr>
                 <Container>
-                    <Typography className={props.darkmodeOn?classes.darkModeText:classes.lightModeText} variant={'h3'} style={{marginTop: "30px"}}>Popular Categories</Typography>
+                    <Typography className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText} variant={'h3'} style={{ marginTop: "30px" }}>Popular Categories</Typography>
                 </Container>
                 <Grid spacing={7} container justifyContent={'center'}>
                     <Grid item>
                         <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
                     </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
+                    {samplelist.map((cat:any) => (
+                        <Grid item>
+                            <CardComponent darkmodeOn={props.darkmodeOn} description={cat.description} title={cat.name} imageurl={cat.url}></CardComponent>
+                        </Grid>
+                    ))}
                 </Grid>
             </Container>
         </div>
