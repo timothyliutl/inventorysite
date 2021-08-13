@@ -44,6 +44,7 @@ const CardComponent = (props: propTypes) => {
                     <div className={`option-box ${props.darkmodeOn? classes.whiteShadow:""}`}>
                         <a style={{ textDecoration: 'none', color: 'black' }}>
                             <div className="option-box-image" style={{ backgroundImage: `url(${props.imageurl ? props.imageurl : "https://asianmedicstore.com/wp-content/uploads/2019/06/support-manual.gif"})` }}>
+                               
                                 <Typography id={`${props.id}`} onClick={props.onClick} style={{ position: 'relative', top: "20px", fontSize:'30px' }} variant={'h4'}>{props.title}</Typography>
                                 <div id={`${props.id}`} style={{height: '100%', width: '100%'}} onClick={props.onClick}></div>
                                 <Button onClick={toggleFlip} variant={'contained'} color={'primary'} style={{ position: 'absolute', bottom: '20px', left:'43px' }}>More Info</Button>

@@ -7,7 +7,7 @@ interface categoryTypes {
     name: string,
     description?: string,
     subcategories?: Array<number>,
-    url?: string,
+    image?: string,
     id: number
 }
 interface CategoryChildren {
@@ -17,11 +17,16 @@ interface CategoryChildren {
 interface propTypes {
     darkmodeOn: boolean
 }
+
+interface navigation{
+    name: string,
+    id: number
+}
 var category:CategoryChildren;
 const CategorySearch = (props: propTypes) => {
     const type: Array<categoryTypes> = [] //work around for initalizing type but isnt the best thing in the world
     const [categoryList, setCategoryList] = useState(type); //current category list shown
-    const [navString, setNavString] = useState('Home'); //string seen on top of the page
+    const [navString, setNavString] = useState([{name: 'Home', id: 583}]); //string seen on top of the page
     const [listHistory, setListHistory] = useState([type]); //for going backwards
     useEffect(() => {
         //request for whole category array
@@ -66,6 +71,10 @@ const CategorySearch = (props: propTypes) => {
        //TODO:
     }
 
+    const goBack = (pageNum:number) =>{
+
+    }
+
     const changePage = (e:React.ChangeEvent) => {
         const id:number = parseInt(e.currentTarget.getAttribute('id') as string);
         var tempArray:Array<categoryTypes> = [];
@@ -79,8 +88,9 @@ const CategorySearch = (props: propTypes) => {
             
         setCategoryList(tempArray);
         console.log(categoryList);
-
-        setNavString(navString + ` > ${category[id].name}`)
+        var tempnavarray = navString;
+        tempnavarray.push({name:category[id].name, id: id})
+        setNavString(tempnavarray)
         addHistory(id);
 
     }
@@ -126,7 +136,9 @@ const CategorySearch = (props: propTypes) => {
                 </Grid>
                 <hr className={props.darkmodeOn ? classes.hrStyleDark : ""} style={{ marginTop: '70px', marginBottom: '70px', height: '3px' }}></hr>
                 <Container>
-                    <p>{navString}</p>
+                    <Grid container direction={'column'}>{navString.map((cat)=>(
+                        <Grid></Grid>
+                    ))}</Grid>
                     <Typography className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText} variant={'h3'} style={{ marginTop: "30px" }}>Popular Categories</Typography>
                 </Container>
                 <Grid spacing={7} container justifyContent={'center'}>
@@ -135,7 +147,7 @@ const CategorySearch = (props: propTypes) => {
                     </Grid>
                     {categoryList.map((cat: categoryTypes) => (
                         <Grid item>
-                            <CardComponent onClick={changePage} darkmodeOn={props.darkmodeOn} description={cat.description} title={cat.name} imageurl={cat.url} id={cat.id}></CardComponent>
+                            <CardComponent onClick={changePage} darkmodeOn={props.darkmodeOn} description={cat.description} title={cat.name} imageurl={cat.image?cat.image:""} id={cat.id}></CardComponent>
                         </Grid>
                     ))}
                 </Grid>
