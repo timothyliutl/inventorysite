@@ -6,8 +6,13 @@ interface propsTypes {
     playlistlinks: Array<{ //format expected for playlist input
         url: string,
         name: string,
-        time: string
+        time: string,
+        id: string,
+        description: string,
+        playlist?: string,
+        tags?: Array<string>
     }>,
+    onClick?: any //function to change videos
 }
 
 const PlayList = (props: propsTypes) => {
@@ -25,20 +30,11 @@ const PlayList = (props: propsTypes) => {
             <Typography className={props.darkmodeOn ? classes.fontDarkMode : ''} style={{ padding: '20px', paddingBottom: '0px' }} variant={'h4'}>Up Next</Typography>
             <hr className={props.darkmodeOn ? classes.fontDarkMode : ''} style={{ margin: '0px', marginTop: '5px' }}></hr>
             <List>
-                <ListItem button>
-                    <ListItemText className={props.darkmodeOn ? classes.fontDarkMode : ''} primary={'Sample Entry'} secondary={
-                        <React.Fragment>
-                            <p className={props.darkmodeOn ? classes.fontDarkMode : ''} style={{ margin: '0' }}>
-                                Uploaded 4/20 - 4:30
-                            </p>
-
-                        </React.Fragment>
-                    }></ListItemText>
-                </ListItem>
+                
                 {
                     //code to implement arrya of javascript objects into the UI
                     props.playlistlinks.map((video) => (
-                        <ListItem button>
+                        <ListItem button onClick={()=>{props.onClick(video)}}>
                             <ListItemText className={props.darkmodeOn ? classes.fontDarkMode : ''} primary={video.name} secondary={
                                 <React.Fragment>
                                     <p className={props.darkmodeOn ? classes.fontDarkMode : ''} style={{ margin: '0' }}>

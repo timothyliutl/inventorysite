@@ -1,28 +1,56 @@
 import { Card, Container, Grid, makeStyles } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import PlayList from './PlayList';
 
 interface propTypes {
     darkmodeOn: boolean
 }
+interface videoTypes {
+    name: string,
+    url: string,
+    time: string,
+    id: string,
+    description: string,
+    playlist?: string,
+    tags?: Array<string>
+}
 
 const VideoPlayer = (props: propTypes) => {
 
     const sampleplaylist = [{
-        name: "Sample Video 1",
-        url: 'skdfdf',
-        time: '4:20'
+        name: "wardell",
+        url: 'https://www.youtube.com/watch?v=Fcif1yxWHAM',
+        time: '4:20',
+        id: 'video1',
+        description: 'The art of whiffing',
+        playlist: 'yeet',
+        tags: ['valorant', 'whiff', 'TSM']
     },
     {
-        name: "Sample Video 2",
-        url: 'skdfdf',
-        time: '6:09'
-    },{
-        name: "Sample Video 3",
-        url: 'skdfdf',
-        time: 'sjdhfksadhf'
+        name: "u got baited",
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        time: '6:09',
+        id: 'video2',
+        description: 'lol'
+    }, {
+        name: "keyboard asmr",
+        url: 'https://www.youtube.com/watch?v=o5Ra1ddZSXk',
+        time: 'sjdhfksadhf',
+        id: 'video3',
+        description: 'clickity clack'
     }]
+
+    const [currentVideo, setCurrentVideo] = useState({
+        name: "wardell",
+        url: 'https://www.youtube.com/watch?v=Fcif1yxWHAM',
+        time: '4:20',
+        id: 'video1',
+        description: 'The art of whiffing',
+        playlist: 'yeet',
+        tags: ['valorant', 'whiff', 'TSM']
+    } as videoTypes)
+
 
     const styles = makeStyles({
         videoPlayerContainer: {
@@ -63,6 +91,11 @@ const VideoPlayer = (props: propTypes) => {
     })
     const classes = styles();
 
+    const changeVideo = (newVideo: videoTypes) => {
+        
+        setCurrentVideo(newVideo);
+    }
+
     return (
         <div style={{ width: "95%", marginLeft: 'auto', marginRight: 'auto', marginTop: '20px' }}>
 
@@ -72,24 +105,30 @@ const VideoPlayer = (props: propTypes) => {
                         <div>
                             <Grid container direction={'column'}>
                                 <Grid item>
-                                    <ReactPlayer controls width={'100%'} height={'500px'} style={{ marginLeft: 'auto', marginRight: 'auto', padding: "20px" }} url={'https://www.youtube.com/watch?v=Fcif1yxWHAM'}></ReactPlayer>
+                                    <ReactPlayer controls width={'100%'} height={'500px'} style={{ marginLeft: 'auto', marginRight: 'auto', padding: "20px" }} url={currentVideo.url}></ReactPlayer>
                                 </Grid>
 
                                 <Grid item style={{ paddingLeft: '30px', paddingRight: '30px' }}>
                                     <Card className={`${props.darkmodeOn ? classes.cardDarkMode : classes.cardLightMode}`} style={{ width: '100%', height: '200px', padding: '20px' }} elevation={3}>
                                         <Grid style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }} item container justifyContent={'space-between'} direction={'row'}>
                                             <Grid item>
-                                                <h3 className={props.darkmodeOn ? classes.fontDarkMode : ''}>Video Title</h3>
+                                                <h3 className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.name}</h3>
                                             </Grid>
                                             <Grid item>
-                                                <h6 className={props.darkmodeOn ? classes.fontDarkMode : ''}>Video Playlist</h6>
+                                                <h6 className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.playlist}</h6>
                                             </Grid>
                                         </Grid>
                                         <hr className={props.darkmodeOn ? classes.fontDarkMode : ''} style={{ marginTop: '0px' }}></hr>
                                         <Container>
-                                            <p className={props.darkmodeOn ? classes.fontDarkMode : ''}>Video Description</p>
+                                            <p className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.description}</p>
                                             <br></br>
-                                            <p className={props.darkmodeOn ? classes.fontDarkMode : ''}>Video Tags</p>
+                                            <Grid direction={'row'} container spacing={2}>
+                                            {currentVideo.tags?.map((tag)=>(
+                                                <Grid className={props.darkmodeOn ? classes.fontDarkMode : ''} item>
+                                                    <span>#{tag}</span>
+                                                </Grid>
+                                            ))}</Grid>
+                                            
                                         </Container>
                                     </Card>
                                 </Grid>
@@ -102,7 +141,7 @@ const VideoPlayer = (props: propTypes) => {
                 </Grid>
                 <Grid item xs={3} style={{ paddingTop: '20px' }}>
                     <Card className={`${classes.playlistStyle} ${props.darkmodeOn ? classes.cardDarkMode : classes.cardLightMode}`} elevation={4}>
-                        <PlayList darkmodeOn={props.darkmodeOn} playlistlinks={sampleplaylist}></PlayList>
+                        <PlayList onClick={changeVideo} darkmodeOn={props.darkmodeOn} playlistlinks={sampleplaylist}></PlayList>
                     </Card>
 
                 </Grid>
