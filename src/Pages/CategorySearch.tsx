@@ -42,6 +42,7 @@ const CategorySearch = (props: propTypes) => {
         }).then((json)=>{
             category = json;
             setHomePage(json)
+            initializeHistory() //to add home page into history array
             console.log(json)
         }, (error)=>{
             console.log(error)
@@ -59,6 +60,14 @@ const CategorySearch = (props: propTypes) => {
         setCategoryList(homeArr)
         console.log(homeArr)
     }
+    const initializeHistory = () =>{
+        var tempArray:Array<categoryTypes> = [];
+        category[583].subcategories?.forEach((subcategories)=>{
+            tempArray.push(category[subcategories])
+        })
+        setListHistory([tempArray])
+    }
+    //function to add home into array
     const addHistory = (id:number) =>{
         var temp = listHistory;
         var tempArray:Array<categoryTypes> = [];
@@ -72,7 +81,11 @@ const CategorySearch = (props: propTypes) => {
     }
 
     const goBack = (pageNum:number) =>{
-
+        console.log(pageNum)
+        console.log(listHistory)
+        setCategoryList(listHistory[pageNum-1])
+        setListHistory(listHistory.splice(0,pageNum))
+        setNavString(navString.splice(0,pageNum))
     }
 
     const changePage = (e:React.ChangeEvent) => {
@@ -135,16 +148,18 @@ const CategorySearch = (props: propTypes) => {
                     </Grid>
                 </Grid>
                 <hr className={props.darkmodeOn ? classes.hrStyleDark : ""} style={{ marginTop: '70px', marginBottom: '70px', height: '3px' }}></hr>
+                <Grid container direction={'row'}>
+                   {navString.map((page:navigation, index)=>(
+                       <Grid>
+                            <p onClick={()=>{goBack(index+1)}} style={{cursor:'pointer'}}>{page.name!='Home'?'> ':''} {" " + page.name}</p>
+                       </Grid>
+                ))} 
+                </Grid>
+                
                 <Container>
-                    <Grid container direction={'column'}>{navString.map((cat)=>(
-                        <Grid></Grid>
-                    ))}</Grid>
                     <Typography className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText} variant={'h3'} style={{ marginTop: "30px" }}>Popular Categories</Typography>
                 </Container>
                 <Grid spacing={7} container justifyContent={'center'}>
-                    <Grid item>
-                        <CardComponent id={123} darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
                     {categoryList.map((cat: categoryTypes) => (
                         <Grid item>
                             <CardComponent onClick={changePage} darkmodeOn={props.darkmodeOn} description={cat.description} title={cat.name} imageurl={cat.image?cat.image:""} id={cat.id}></CardComponent>
