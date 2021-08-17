@@ -30,7 +30,7 @@ const CategorySearch = (props: propTypes) => {
     const [listHistory, setListHistory] = useState([type]); //for going backwards
     useEffect(() => {
         //request for whole category array
-        fetch('http://uglabs.phy.queensu.ca/inventory/html2php/listCategory.php', {
+        fetch('http://uglabs.phy.queensu.ca:80/listCategory.php', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

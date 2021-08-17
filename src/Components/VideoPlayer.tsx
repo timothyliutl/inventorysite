@@ -87,13 +87,30 @@ const VideoPlayer = (props: propTypes) => {
         },
         cardLightMode: {
             transition: 'background-color 0.5s ease'
+        },
+        playlistContainer: {
+            paddingTop: '5px',
+            borderRadius: '15px',
+            paddingBottom: '5px',
+            paddingRight: '10px',
+            paddingLeft: '10px'
         }
     })
     const classes = styles();
 
     const changeVideo = (newVideo: videoTypes) => {
-        
+
         setCurrentVideo(newVideo);
+    }
+
+    const playlistLabel = () => {
+        if (currentVideo.playlist) {
+            return (<Grid item style={{ marginRight: '30px' }}>
+                <div className={classes.playlistContainer} style={{ backgroundColor: '#5bc0de' }}>
+                    <span className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.playlist}</span>
+                </div>
+            </Grid>)
+        }
     }
 
     return (
@@ -110,25 +127,23 @@ const VideoPlayer = (props: propTypes) => {
 
                                 <Grid item style={{ paddingLeft: '30px', paddingRight: '30px' }}>
                                     <Card className={`${props.darkmodeOn ? classes.cardDarkMode : classes.cardLightMode}`} style={{ width: '100%', height: '200px', padding: '20px' }} elevation={3}>
-                                        <Grid style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }} item container justifyContent={'space-between'} direction={'row'}>
+                                        <Grid style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto' }} item container justifyContent={'space-between'} direction={'row'}>
                                             <Grid item>
                                                 <h3 className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.name}</h3>
                                             </Grid>
-                                            <Grid item>
-                                                <h6 className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.playlist}</h6>
-                                            </Grid>
+                                            {playlistLabel()}
                                         </Grid>
                                         <hr className={props.darkmodeOn ? classes.fontDarkMode : ''} style={{ marginTop: '0px' }}></hr>
                                         <Container>
                                             <p className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.description}</p>
                                             <br></br>
                                             <Grid direction={'row'} container spacing={2}>
-                                            {currentVideo.tags?.map((tag)=>(
-                                                <Grid className={props.darkmodeOn ? classes.fontDarkMode : ''} item>
-                                                    <span>#{tag}</span>
-                                                </Grid>
-                                            ))}</Grid>
-                                            
+                                                {currentVideo.tags?.map((tag) => (
+                                                    <Grid className={props.darkmodeOn ? classes.fontDarkMode : ''} item>
+                                                        <span>#{tag}</span>
+                                                    </Grid>
+                                                ))}</Grid>
+
                                         </Container>
                                     </Card>
                                 </Grid>
@@ -139,11 +154,10 @@ const VideoPlayer = (props: propTypes) => {
                         </div>
                     </Grid>
                 </Grid>
-                <Grid item xs={3} style={{ paddingTop: '20px' }}>
+                <Grid item xs={6} lg={3} style={{ paddingTop: '20px' }}>
                     <Card className={`${classes.playlistStyle} ${props.darkmodeOn ? classes.cardDarkMode : classes.cardLightMode}`} elevation={4}>
                         <PlayList onClick={changeVideo} darkmodeOn={props.darkmodeOn} playlistlinks={sampleplaylist}></PlayList>
                     </Card>
-
                 </Grid>
 
             </Grid>
