@@ -41,15 +41,26 @@ const VideoPlayer = (props: propTypes) => {
         description: 'clickity clack'
     }]
 
-    const [currentVideo, setCurrentVideo] = useState({
-        name: "wardell",
-        url: 'https://www.youtube.com/watch?v=Fcif1yxWHAM',
-        time: '4:20',
-        id: 'video1',
-        description: 'The art of whiffing',
-        playlist: 'yeet',
-        tags: ['valorant', 'whiff', 'TSM']
-    } as videoTypes)
+    const tutorial1: Array<videoTypes> = [{
+        name: 'Types of Tubing',
+        url: 'https://www.youtube.com/watch?v=uiT2lQqNqL8',
+        time: '2:49', id: "Tubing1", playlist: 'Tubing Connections', description: ''
+    }, {
+        name: "Tube Connections",
+        url: 'https://www.youtube.com/watch?v=hATLe5RnAQM',
+        time: '6:19',
+        id: 'Tubing2',
+        playlist: 'Tubing Connections', description: ''
+    }, {
+        name: 'checking for leaks',
+        url: 'https://www.youtube.com/watch?v=uEj021js0aM',
+        time: '1:52',
+        id: 'Tubing3',
+        playlist: 'Tubing Connections', description: ''
+    }
+    ]
+
+    const [currentVideo, setCurrentVideo] = useState(tutorial1[0] as videoTypes)
 
 
     const styles = makeStyles({
@@ -156,7 +167,7 @@ const VideoPlayer = (props: propTypes) => {
                 </Grid>
                 <Grid item xs={6} lg={3} style={{ paddingTop: '20px' }}>
                     <Card className={`${classes.playlistStyle} ${props.darkmodeOn ? classes.cardDarkMode : classes.cardLightMode}`} elevation={4}>
-                        <PlayList onClick={changeVideo} darkmodeOn={props.darkmodeOn} playlistlinks={sampleplaylist}></PlayList>
+                        <PlayList onClick={changeVideo} darkmodeOn={props.darkmodeOn} playlistlinks={tutorial1}></PlayList>
                     </Card>
                 </Grid>
 
