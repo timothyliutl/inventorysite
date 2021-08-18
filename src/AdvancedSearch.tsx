@@ -1,4 +1,4 @@
-import { Checkbox, FormControl, FormControlLabel, FormGroup, makeStyles, Typography } from '@material-ui/core';
+import { Checkbox, FormControl, FormControlLabel, FormGroup, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 
@@ -8,6 +8,21 @@ const AdvancedSearch = (props: any) => {
         subcategories: ["USB Cables", "Voltmeters", "Batteries"]
     },
     {
+        name: "Computers",
+        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
+    },{
+        name: "Computers",
+        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
+    },{
+        name: "Computers",
+        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
+    },{
+        name: "Computers",
+        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
+    },{
+        name: "Computers",
+        subcategories: ["Raspberry Pi", "Arduino"]
+    },{
         name: "Computers",
         subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
     }]
@@ -53,7 +68,9 @@ const AdvancedSearch = (props: any) => {
 
                         <h3 style={{ marginBottom: "20px" }} className={props.darkmodeOn ? classes.inputDarkMode : ""}>Category</h3>
                         <Container>
+                            <Grid container direction={'row'} spacing={3} justifyContent={'space-between'}>
                             {categories.map((category) => (
+                                <Grid item>
                                 <div>
                                     <Typography variant={'h6'} className={props.darkmodeOn ? classes.secondaryDarkMode : ""}>{category.name}</Typography>
                                     <Container>
@@ -66,8 +83,9 @@ const AdvancedSearch = (props: any) => {
                                         </FormGroup>
                                     </Container>
                                 </div>
+                                </Grid>
                             )
-                            )}
+                            )}</Grid>
                         </Container>
 
                     </FormControl>

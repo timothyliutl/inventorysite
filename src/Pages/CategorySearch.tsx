@@ -1,5 +1,6 @@
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
+import {Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import CardComponent from '../Components/CardComponent';
 
 
@@ -60,6 +61,7 @@ const CategorySearch = (props: propTypes) => {
         setCategoryList(homeArr)
         console.log(homeArr)
     }
+    //to get first set of categories in listhistory array
     const initializeHistory = () =>{
         var tempArray:Array<categoryTypes> = [];
         category[583].subcategories?.forEach((subcategories)=>{
@@ -79,13 +81,23 @@ const CategorySearch = (props: propTypes) => {
         console.log(temp)
        //TODO:
     }
-
+    //page number index starts at 1
     const goBack = (pageNum:number) =>{
         console.log(pageNum)
         console.log(listHistory)
         setCategoryList(listHistory[pageNum-1])
         setListHistory(listHistory.splice(0,pageNum))
         setNavString(navString.splice(0,pageNum))
+    }
+    //conditional rendering for "go back" button
+    const goBackButton = () =>{
+        if(listHistory.length>1){
+            return(
+                <Button style={{marginTop:'10px', marginLeft:'10px'}} variant={props.darkmodeOn?'outline-info':'info'} className={props.darkmodeOn?classes.darkModeButton:''} onClick={()=>{
+                    goBack(listHistory.length-1)
+                }}>Go Back</Button>
+            )
+        }
     }
 
     const changePage = (e:React.ChangeEvent) => {
@@ -107,8 +119,7 @@ const CategorySearch = (props: propTypes) => {
         addHistory(id);
 
     }
-
-
+    
 
     const styles = makeStyles({
         lightModeText: {
@@ -127,6 +138,13 @@ const CategorySearch = (props: propTypes) => {
         },
         transformGrid: {
             transition: 'height 2s'
+        },
+        darkModeButton:{
+            color: "#04d9ff",
+            borderColor: "#04d9ff",
+            "&:hover":{
+                borderColor: "#04d9ff",
+            }
         }
     })
     const classes = styles();
@@ -135,29 +153,18 @@ const CategorySearch = (props: propTypes) => {
 
     return (
         <div>
-            <Container>
-                <Container>
-                    <Typography className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText} style={{ marginTop: "30px" }} variant={'h3'}>Quick Links</Typography>
-                </Container>
-                <Grid spacing={7} container justifyContent={'center'}>
-                    <Grid item>
-                        <CardComponent id={123} darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                    <Grid item>
-                        <CardComponent id={123123} darkmodeOn={props.darkmodeOn} title={'Tutorials'} description={'Various Tutorial Videos'} imageurl={'https://avatars.githubusercontent.com/u/1965106?s=200&v=4'}></CardComponent>
-                    </Grid>
-                </Grid>
-                <hr className={props.darkmodeOn ? classes.hrStyleDark : ""} style={{ marginTop: '70px', marginBottom: '70px', height: '3px' }}></hr>
+            <Container style={{marginTop:'30px', minHeight:'200px'}}>
                 <Grid container direction={'row'}>
                    {navString.map((page:navigation, index)=>(
                        <Grid>
-                            <p onClick={()=>{goBack(index+1)}} style={{cursor:'pointer'}}>{page.name!='Home'?'> ':''} {" " + page.name}</p>
+                            <p className={props.darkmodeOn?classes.darkModeText:""} onClick={()=>{goBack(index+1)}} style={{cursor:'pointer'}}>{page.name!='Home'?'> ':''} {" " + page.name}</p>
                        </Grid>
                 ))} 
                 </Grid>
-                
+                <hr className={props.darkmodeOn?classes.darkModeText:""} style={{marginTop:'0px', marginBottom:'0px'}}></hr>
+                {goBackButton()}
                 <Container>
-                    <Typography className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText} variant={'h3'} style={{ marginTop: "30px" }}>Popular Categories</Typography>
+                    <Typography className={props.darkmodeOn ? classes.darkModeText : classes.lightModeText} variant={'h3'} style={{ marginTop: "30px" }}>Categories</Typography>
                 </Container>
                 <Grid spacing={7} container justifyContent={'center'}>
                     {categoryList.map((cat: categoryTypes) => (

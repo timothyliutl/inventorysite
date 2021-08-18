@@ -15,6 +15,7 @@ import CategorySearch from './Pages/CategorySearch';
 import "./index.css"
 import Footer from './Components/Footer';
 import TutorialVideoPage from './Pages/TutorialVideoPage';
+import VideoSelectionPage from './Pages/VideoSelectionPage';
 
 
 class App extends Component<any, any>{
@@ -48,8 +49,9 @@ class App extends Component<any, any>{
         <Router>
           <Switch>
             <Route path="/" exact>
-              <SiteNavbar darkmode={darkModeToggle} darkmodeOn={this.state.darkMode}></SiteNavbar>
-              <HomePageContent darkmodeOn={this.state.darkMode}></HomePageContent>
+            <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
+              <CategorySearch darkmodeOn={this.state.darkMode}></CategorySearch>
+              <Footer darkmodeOn={this.state.darkMode}></Footer>
             </Route>
             <Route path="/table" exact>
               <SiteNavbar darkmode={darkModeToggle} darkmodeOn={this.state.darkMode}></SiteNavbar>
@@ -67,6 +69,11 @@ class App extends Component<any, any>{
             <Route path={'/video'} exact>
               <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
               <TutorialVideoPage darkmodeOn={this.state.darkMode}></TutorialVideoPage>
+              <Footer darkmodeOn={this.state.darkMode}></Footer>
+            </Route>
+            <Route path={'/videoselection'} exact>
+              <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
+              <VideoSelectionPage darkmodeOn={this.state.darkMode}></VideoSelectionPage>
               <Footer darkmodeOn={this.state.darkMode}></Footer>
             </Route>
           </Switch>
