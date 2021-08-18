@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, FormControlClassKey, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Icon from 'react-bootstrap-icons';
@@ -25,6 +25,24 @@ interface POSTparams{
 }
 
 const Tableview = (props: propsTypes) => {
+    useEffect(()=>{
+        fetch('http://uglabs.phy.queensu.ca:81/tabletest.php',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then((response)=>{
+            console.log(response)
+            return response.json();
+        }).then((json)=>{
+            console.log(json);
+        }, (error)=>{
+            console.log(error)
+        })
+    },[]);
+
     const styles = makeStyles({
         lightModeText: {
             color: "black",

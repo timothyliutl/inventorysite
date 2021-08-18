@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from '@material-ui/core'
+import { Container, Grid, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import PlayListTile from '../Components/PlayListTile'
 
@@ -8,13 +8,14 @@ interface propTypes {
 
 const VideoSelectionPage = (props: propTypes) => {
 
+
     return (
         <div style={{ marginTop: ' 30px' }}>
             <Container>
-                <Typography variant={'h4'}>Playlist Selection</Typography>
-                <hr></hr>
+                <Typography style={props.darkmodeOn?{color: "#04d9ff"}:{}} variant={'h4'}>Playlist Selection</Typography>
+                <hr style={props.darkmodeOn?{color: "#04d9ff"}:{}}></hr>
                 <Container>
-                    <Grid container direction={'row'} justifyContent={"space-between"} spacing={3}>
+                    <Grid container direction={'row'} justifyContent={"space-evenly"} spacing={3}>
                         <Grid item>
                             <PlayListTile darkmodeOn={props.darkmodeOn}></PlayListTile>
                         </Grid>

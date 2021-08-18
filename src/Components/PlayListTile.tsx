@@ -18,29 +18,37 @@ const PlayListTile = (props:propTypes) =>{
 
     const styles = makeStyles({
         cardStyles: {
-            width:'350px'
+            width:'350px',
+            transition: 'all 1s'
         },
         tagStyles:{
             padding:'5px',
             borderRadius: '15px',
-            backgroundColor:'aqua'
+            backgroundColor:'aqua',
+            transition: 'all 1s'
+        },
+        cardDarkmode:{
+            backgroundColor: '#141E61'
+        },
+        textDarkMode:{
+            color: "#04d9ff"
         }
     })
     const classes = styles();
 
     return(
         <div>
-            <Card variant={'outlined'} className={classes.cardStyles}>
+            <Card variant={'outlined'} className={classes.cardStyles + ` ${props.darkmodeOn?classes.cardDarkmode:""}`}>
                 <CardActionArea>
                     <CardMedia title={'sample title'} component={'img'} image={'https://www.ncsbn.org/images/Banner_NCLEX-Tutorial.jpg'}></CardMedia>
                     <CardContent>
-                        <Typography variant={'h5'}>Sample Title</Typography>
-                        <Typography variant={'body2'} style={{marginTop:'10px'}}>Sample Description</Typography>
+                        <Typography className={props.darkmodeOn?classes.textDarkMode:''} variant={'h5'}>Sample Title</Typography>
+                        <Typography className={props.darkmodeOn?classes.textDarkMode:''} variant={'body2'} style={{marginTop:'10px'}}>Sample Description</Typography>
                         
                         <Grid style={{marginTop:'15px'}} container direction={'row'}>
                             <Grid item>
                                 <div>
-                                    <Typography className={classes.tagStyles} variant={'subtitle2'}>Sample Tag</Typography>
+                                    <Typography style={props.darkmodeOn?{backgroundColor:'#787A91'}:{}} className={classes.tagStyles + ` ${props.darkmodeOn?classes.textDarkMode:''}`} variant={'subtitle2'}>Sample Tag</Typography>
                                 </div>
                             </Grid>
                         </Grid>
