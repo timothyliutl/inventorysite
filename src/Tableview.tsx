@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
-import { Container, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
+import { Container, FormControlClassKey, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Icon from 'react-bootstrap-icons';
 import { Button, Col, FloatingLabel, Form, Row, Modal } from 'react-bootstrap';
 import AdvancedSearch from './AdvancedSearch';
+import axios from 'axios';
 //styles for light and darkmode states
-const Tableview = (props: any) => {
+
+interface propsTypes{
+    darkmodeOn: boolean
+}
+
+interface tableItem{
+    name:string,
+    description?: string,
+    location?: string,
+    url?: string
+}
+
+interface POSTparams{
+    searchKeys: Array<string>,
+    type: string,
+    //idk update this later when the php file is actually created
+}
+
+const Tableview = (props: propsTypes) => {
     const styles = makeStyles({
         lightModeText: {
             color: "black",
@@ -60,12 +79,30 @@ const Tableview = (props: any) => {
     }
     ];
         const [show, setShow] = useState(false);
+        const [tableItems, setTableItems] = useState()
         const handleClose = () =>{
             setShow(false);
         }
         const handleShow = () =>{
             setShow(true);
         }
+        const submitForm = (event:React.KeyboardEvent) =>{
+            if(event.key==='Enter'){
+                //logic for post request
+                console.log('submit')
+            }
+        }
+
+        const handlePOSTRequest = (params:POSTparams) =>{
+            const postparams = params;
+            const url = "uglabs.phy.queensu.ca:81/"; //TODO: find out what url the api will be at
+            axios.post(url, postparams).then((response)=>{
+                
+            }, (error)=>{
+                console.log("error" + error);
+            })
+        }
+
 
     return (
         <div>
@@ -73,7 +110,7 @@ const Tableview = (props: any) => {
                 <Row>
                     <Col xs={1}><Icon.Search className={props.darkmodeOn ? classes.inputDarkMode : ""} size={35} style={{ marginTop: "10px" }}></Icon.Search></Col>
                     <Col xs={11}><FloatingLabel className={props.darkmodeOn ? classes.inputDarkMode : ""} label={<div>Search Here</div>} controlId={'floatingInput'}>
-                        <Form.Control id={'floatingInput'} className={props.darkmodeOn ? classes.darkBackground : ""} placeholder={'sample placeholder'}>
+                        <Form.Control onKeyPress={(event)=>{submitForm(event)}} id={'floatingInput'} className={props.darkmodeOn ? classes.darkBackground : ""} placeholder={'sample placeholder'}>
 
                         </Form.Control>
                     </FloatingLabel></Col>
