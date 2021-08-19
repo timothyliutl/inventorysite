@@ -1,35 +1,57 @@
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
+import { Link } from 'react-router-dom';
 import PlayListTile from '../Components/PlayListTile'
 
 interface propTypes {
-    darkmodeOn: boolean
+    darkmodeOn: boolean,
+}
+
+interface playListType {
+    name: string,
+    description?: string,
+    imageURL?: string,
+    id: string, //has to match playlist id in js object in video plauer 
+    tags?: Array<string>,
+    //to be implemented once database is set up
+    numVideos?: number
 }
 
 const VideoSelectionPage = (props: propTypes) => {
+
+    const sampleData: Array<playListType> = [{
+        name: 'sample',
+        description: 'test playlist',
+        id: 'sample',
+    },
+    {name: 'Tubing Tutorials',
+    description: "First Playlist Videos",
+    id:'id1'},
+    {name: 'Electronics Tutorials',
+    description: 'Second Playlist Videos',
+    id:'id2'}];
 
 
     return (
         <div style={{ marginTop: ' 30px' }}>
             <Container>
-                <Typography style={props.darkmodeOn?{color: "#04d9ff"}:{}} variant={'h4'}>Playlist Selection</Typography>
-                <hr style={props.darkmodeOn?{color: "#04d9ff"}:{}}></hr>
+                <Typography style={props.darkmodeOn ? { color: "#04d9ff" } : {}} variant={'h4'}>Playlist Selection</Typography>
+                <hr style={props.darkmodeOn ? { color: "#04d9ff" } : {}}></hr>
                 <Container>
                     <Grid container direction={'row'} justifyContent={"space-evenly"} spacing={3}>
-                        <Grid item>
-                            <PlayListTile darkmodeOn={props.darkmodeOn}></PlayListTile>
-                        </Grid>
-                        <Grid item>
-                            <PlayListTile darkmodeOn={props.darkmodeOn}></PlayListTile>
-                        </Grid>
-                        <Grid item>
-                            <PlayListTile darkmodeOn={props.darkmodeOn}></PlayListTile>
-                        </Grid>
+                        {sampleData.map((playlist) => (
+                            <Link to={`/video?playlistid=${playlist.id}`} style={{textDecoration: 'none'}}>
+                                <Grid item>
+                                    <PlayListTile playlistInfo={playlist} darkmodeOn={props.darkmodeOn}></PlayListTile>
+                                </Grid>
+                            </Link>
+                        ))}
+
                     </Grid>
                 </Container>
 
             </Container>
-        </div>
+        </div >
     )
 }
 

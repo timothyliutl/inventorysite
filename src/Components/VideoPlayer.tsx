@@ -1,11 +1,14 @@
 import { Card, Container, Grid, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
+import { Redirect } from 'react-router';
 import PlayList from './PlayList';
 
 interface propTypes {
-    darkmodeOn: boolean
+    darkmodeOn: boolean,
+    playlistID: string
 }
+//data for each video; playlist is just an array of videotypes
 interface videoTypes {
     name: string,
     url: string,
@@ -14,6 +17,10 @@ interface videoTypes {
     description: string,
     playlist?: string,
     tags?: Array<string>
+}
+//data expected from post request
+interface postDataType{
+    [id:string]: Array<videoTypes>
 }
 
 const VideoPlayer = (props: propTypes) => {
@@ -60,7 +67,73 @@ const VideoPlayer = (props: propTypes) => {
     }
     ]
 
-    const [currentVideo, setCurrentVideo] = useState(tutorial1[0] as videoTypes)
+    const tutorial2: Array<videoTypes> = [{
+        name: "Setting up the Red Pitaya for quantum conductance",
+        url: "https://www.youtube.com/watch?v=iNNQ9wcnUTA",
+        time: "1:43",
+        id: "Electronics1",
+        playlist: 'Electronics',
+        description: ""
+    },
+    {
+        name: "Response Time Introduction",
+        url: 'https://www.youtube.com/watch?v=kPeenFBDXSQ',
+        time: '3:36',
+        id: "Eletronics2",
+        playlist: "Electronics",
+        description: ""
+    },
+    {
+        name: 'Red pitaya introduction',
+        url: 'https://www.youtube.com/watch?v=LbVJD9Rn5Qc',
+        time: '3:21',
+        id: 'Electronics3',
+        playlist: 'Electronics',
+        description: ''
+    },
+    {
+        name: 'light sensors',
+        url: 'https://www.youtube.com/watch?v=pdrDteW7qow',
+        time: '1:31',
+        id: 'Electronics4',
+        playlist: 'Electronics',
+        description: ''
+    },
+    {
+        name: 'LED',
+        url: 'https://www.youtube.com/watch?v=bNoCnjQMULE',
+        time: '1:53',
+        id: 'Electronics6',
+        playlist: 'Electronics',
+        description: ''
+    },
+    {
+        name: 'Arduino',
+        url: 'https://www.youtube.com/watch?v=MUkqLgF7sVY',
+        time: '4:08',
+        id: 'Electronics7',
+        playlist: 'Electronics',
+        description: ''
+    }
+    ]
+
+    const samplePOSTReqData:postDataType = {
+        sample: sampleplaylist,
+        id1:tutorial1,
+        id2:tutorial2
+    }
+    //function to check if url parameter is valid
+    const checkIfExists = (id:string) =>{
+        if(samplePOSTReqData[id]==undefined){
+            return 'sample'
+        }else{
+            return id;
+        }
+    }
+    
+
+    const [currentVideo, setCurrentVideo] = useState(samplePOSTReqData[checkIfExists(props.playlistID)][0] as videoTypes)
+    const [currentPlaylist, setCurrentPlaylist] = useState(samplePOSTReqData[checkIfExists(props.playlistID)])
 
 
     const styles = makeStyles({
@@ -117,7 +190,7 @@ const VideoPlayer = (props: propTypes) => {
     const playlistLabel = () => {
         if (currentVideo.playlist) {
             return (<Grid item style={{ marginRight: '30px' }}>
-                <div className={classes.playlistContainer} style={{ backgroundColor: '#5bc0de' }}>
+                <div className={classes.playlistContainer} style={props.darkmodeOn ? { backgroundColor: '#52057B' } : { backgroundColor: '#5bc0de' }}>
                     <span className={props.darkmodeOn ? classes.fontDarkMode : ''}>{currentVideo.playlist}</span>
                 </div>
             </Grid>)
@@ -167,7 +240,7 @@ const VideoPlayer = (props: propTypes) => {
                 </Grid>
                 <Grid item xs={6} lg={3} style={{ paddingTop: '20px' }}>
                     <Card className={`${classes.playlistStyle} ${props.darkmodeOn ? classes.cardDarkMode : classes.cardLightMode}`} elevation={4}>
-                        <PlayList onClick={changeVideo} darkmodeOn={props.darkmodeOn} playlistlinks={tutorial1}></PlayList>
+                        <PlayList onClick={changeVideo} darkmodeOn={props.darkmodeOn} playlistlinks={currentPlaylist} selected={currentVideo.id}></PlayList>
                     </Card>
                 </Grid>
 
