@@ -1,8 +1,14 @@
 import { Checkbox, FormControl, FormControlLabel, FormGroup, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Button } from 'react-bootstrap';
+
+interface propTypes{
+    darkmodeOn: boolean
+}
 
 const AdvancedSearch = (props: any) => {
+
+    
     const categories = [{
         name: "Testing Equipment",
         subcategories: ["USB Cables", "Voltmeters", "Batteries"]
@@ -86,6 +92,11 @@ const AdvancedSearch = (props: any) => {
                                 </Grid>
                             )
                             )}</Grid>
+                            <Grid container justifyContent={'flex-end'}>
+                                <Grid item>
+                                    <Button variant={props.darkmodeOn?"outline-info":"primary"}>Apply Filters</Button>
+                                </Grid>
+                            </Grid>
                         </Container>
 
                     </FormControl>

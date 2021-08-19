@@ -15,12 +15,12 @@ interface videoTypes {
     time: string,
     id: string,
     description: string,
-    playlist?: string,
+    playlist?: string, //to be displayed on the video, not the id 
     tags?: Array<string>
 }
 //data expected from post request
-interface postDataType{
-    [id:string]: Array<videoTypes>
+interface postDataType {
+    [id: string]: Array<videoTypes>
 }
 
 const VideoPlayer = (props: propTypes) => {
@@ -116,21 +116,37 @@ const VideoPlayer = (props: propTypes) => {
         description: ''
     }
     ]
+    const tutorial3: Array<videoTypes> = [{
+        name: 'Chuck Runout',
+        url: 'https://www.youtube.com/watch?v=o8N3dxXe8Qw',
+        time: '1:00',
+        id: 'Machine1',
+        playlist: 'Machine Shop',
+        description: ''
+    }, {
+        name: 'Changing the Chuck',
+        url: 'https://www.youtube.com/watch?v=Hm6oCqxSa5E',
+        time: '2:03',
+        id: 'Machine2',
+        playlist: 'Machine Shop',
+        description: ''
+    }]
 
-    const samplePOSTReqData:postDataType = {
+    const samplePOSTReqData: postDataType = {
         sample: sampleplaylist,
-        id1:tutorial1,
-        id2:tutorial2
+        id1: tutorial1,
+        id2: tutorial2,
+        id3: tutorial3
     }
     //function to check if url parameter is valid
-    const checkIfExists = (id:string) =>{
-        if(samplePOSTReqData[id]==undefined){
+    const checkIfExists = (id: string) => {
+        if (samplePOSTReqData[id] == undefined) {
             return 'sample'
-        }else{
+        } else {
             return id;
         }
     }
-    
+
 
     const [currentVideo, setCurrentVideo] = useState(samplePOSTReqData[checkIfExists(props.playlistID)][0] as videoTypes)
     const [currentPlaylist, setCurrentPlaylist] = useState(samplePOSTReqData[checkIfExists(props.playlistID)])

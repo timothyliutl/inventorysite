@@ -19,17 +19,25 @@ interface playListType {
 
 const VideoSelectionPage = (props: propTypes) => {
 
-    const sampleData: Array<playListType> = [{
-        name: 'sample',
-        description: 'test playlist',
-        id: 'sample',
-    },
-    {name: 'Tubing Tutorials',
-    description: "First Playlist Videos",
-    id:'id1'},
-    {name: 'Electronics Tutorials',
-    description: 'Second Playlist Videos',
-    id:'id2'}];
+    const sampleData: Array<playListType> = [
+        {
+            name: 'Tubing Tutorials',
+            description: "First Playlist Videos",
+            id: 'id1',
+            imageURL: 'http://uglabs.phy.queensu.ca:81/attachments/playlist1.png'
+        },
+        {
+            name: 'Electronics Tutorials',
+            description: 'Second Playlist Videos',
+            id: 'id2',
+            imageURL: 'http://uglabs.phy.queensu.ca:81/attachments/playlist2.png'
+        },
+        {
+            name: 'Machine Shop Tutorials',
+            description: 'Machine Shop Playlist', 
+            id: 'id3',
+            imageURL: 'http://uglabs.phy.queensu.ca:81/attachments/playlist3.png'
+        }];
 
 
     return (
@@ -37,10 +45,10 @@ const VideoSelectionPage = (props: propTypes) => {
             <Container>
                 <Typography style={props.darkmodeOn ? { color: "#04d9ff" } : {}} variant={'h4'}>Playlist Selection</Typography>
                 <hr style={props.darkmodeOn ? { color: "#04d9ff" } : {}}></hr>
-                <Container>
+                <Container style={{ marginTop: '40px' }}>
                     <Grid container direction={'row'} justifyContent={"space-evenly"} spacing={3}>
                         {sampleData.map((playlist) => (
-                            <Link to={`/video?playlistid=${playlist.id}`} style={{textDecoration: 'none'}}>
+                            <Link to={`/video?playlistid=${playlist.id}`} style={{ textDecoration: 'none' }}>
                                 <Grid item>
                                     <PlayListTile playlistInfo={playlist} darkmodeOn={props.darkmodeOn}></PlayListTile>
                                 </Grid>

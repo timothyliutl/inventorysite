@@ -41,7 +41,7 @@ const PlayListTile = (props: propTypes) => {
         <div>
             <Card variant={'outlined'} className={classes.cardStyles + ` ${props.darkmodeOn ? classes.cardDarkmode : ""}`}>
                 <CardActionArea>
-                    <CardMedia title={'sample title'} component={'img'} image={(props.playlistInfo.imageURL || 'https://www.ncsbn.org/images/Banner_NCLEX-Tutorial.jpg')}></CardMedia>
+                    <CardMedia height={175} title={'sample title'} component={'img'} image={(props.playlistInfo.imageURL || 'https://www.ncsbn.org/images/Banner_NCLEX-Tutorial.jpg')}></CardMedia>
                     <CardContent>
                         <Typography className={props.darkmodeOn ? classes.textDarkMode : ''} variant={'h5'}>{props.playlistInfo.name}</Typography>
                         <Typography className={props.darkmodeOn ? classes.textDarkMode : ''} variant={'body2'} style={{ marginTop: '10px' }}>{props.playlistInfo.description}</Typography>
