@@ -24,7 +24,7 @@ const VideoSelectionPage = (props: propTypes) => {
             name: 'Tubing Tutorials',
             description: "First Playlist Videos",
             id: 'id1',
-            imageURL: 'http://uglabs.phy.queensu.ca:81/attachments/playlist1.png'
+            imageURL: 'http://uglabs.phy.queensu.ca:81/attachments/playlist3.png'
         },
         {
             name: 'Electronics Tutorials',
@@ -36,7 +36,7 @@ const VideoSelectionPage = (props: propTypes) => {
             name: 'Machine Shop Tutorials',
             description: 'Machine Shop Playlist', 
             id: 'id3',
-            imageURL: 'http://uglabs.phy.queensu.ca:81/attachments/playlist3.png'
+            imageURL: 'http://uglabs.phy.queensu.ca:81/attachments/playlist1.png'
         }];
 
 

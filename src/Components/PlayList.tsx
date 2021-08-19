@@ -47,7 +47,7 @@ const PlayList = (props: propsTypes) => {
                             <ListItemText className={props.darkmodeOn ? classes.fontDarkMode : ''} primary={video.name} secondary={
                                 <React.Fragment>
                                     <p className={props.darkmodeOn ? classes.fontDarkMode : ''} style={{ margin: '0' }}>
-                                        Uploaded 4/20 - {video.time}
+                                        Length - {video.time}
                                     </p>
                                 </React.Fragment>
                             }></ListItemText>
