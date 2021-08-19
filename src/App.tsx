@@ -16,6 +16,7 @@ import "./index.css"
 import Footer from './Components/Footer';
 import TutorialVideoPage from './Pages/TutorialVideoPage';
 import VideoSelectionPage from './Pages/VideoSelectionPage';
+import AdminPage from './Pages/AdminPage';
 
 
 class App extends Component<any, any>{
@@ -74,6 +75,11 @@ class App extends Component<any, any>{
             <Route path={'/videoselection'} exact>
               <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
               <VideoSelectionPage darkmodeOn={this.state.darkMode}></VideoSelectionPage>
+              <Footer darkmodeOn={this.state.darkMode}></Footer>
+            </Route>
+            <Route path={'/admin'} exact>
+            <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
+              <AdminPage darkmodeOn={this.state.darkMode}></AdminPage>
               <Footer darkmodeOn={this.state.darkMode}></Footer>
             </Route>
           </Switch>

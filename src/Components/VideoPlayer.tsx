@@ -25,28 +25,7 @@ interface postDataType {
 
 const VideoPlayer = (props: propTypes) => {
 
-    const sampleplaylist = [{
-        name: "wardell",
-        url: 'https://www.youtube.com/watch?v=Fcif1yxWHAM',
-        time: '4:20',
-        id: 'video1',
-        description: 'The art of whiffing',
-        playlist: 'yeet',
-        tags: ['valorant', 'whiff', 'TSM']
-    },
-    {
-        name: "u got baited",
-        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        time: '6:09',
-        id: 'video2',
-        description: 'lol'
-    }, {
-        name: "keyboard asmr",
-        url: 'https://www.youtube.com/watch?v=o5Ra1ddZSXk',
-        time: 'sjdhfksadhf',
-        id: 'video3',
-        description: 'clickity clack'
-    }]
+    
 
     const tutorial1: Array<videoTypes> = [{
         name: 'Types of Tubing',
@@ -133,10 +112,10 @@ const VideoPlayer = (props: propTypes) => {
     }]
 
     const samplePOSTReqData: postDataType = {
-        sample: sampleplaylist,
         id1: tutorial1,
         id2: tutorial2,
-        id3: tutorial3
+        id3: tutorial3,
+        sample: tutorial1
     }
     //function to check if url parameter is valid
     const checkIfExists = (id: string) => {
