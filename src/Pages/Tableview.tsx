@@ -3,7 +3,7 @@ import { Container, FormControlClassKey, makeStyles, Table, TableBody, TableCell
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Icon from 'react-bootstrap-icons';
 import { Button, Col, FloatingLabel, Form, Row, Modal } from 'react-bootstrap';
-import AdvancedSearch from './AdvancedSearch';
+import AdvancedSearch from '../Components/AdvancedSearch';
 import axios from 'axios';
 //styles for light and darkmode states
 

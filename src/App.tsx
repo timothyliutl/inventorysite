@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SiteNavbar from './Navbar';
+import SiteNavbar from './Components/Navbar';
 import HomePageContent from './homepage';
 import {
   BrowserRouter as Router,
@@ -9,7 +9,7 @@ import {
   Link, useLocation
 } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import Tableview from './Tableview';
+import Tableview from './Pages/Tableview';
 import ItemPage from './Pages/ItemPage';
 import CategorySearch from './Pages/CategorySearch';
 import "./index.css"

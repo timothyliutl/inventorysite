@@ -16,22 +16,7 @@ const AdvancedSearch = (props: any) => {
     {
         name: "Computers",
         subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
-    },{
-        name: "Computers",
-        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
-    },{
-        name: "Computers",
-        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
-    },{
-        name: "Computers",
-        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
-    },{
-        name: "Computers",
-        subcategories: ["Raspberry Pi", "Arduino"]
-    },{
-        name: "Computers",
-        subcategories: ["Raspberry Pi", "Arduino", "Laptops"]
-    }]
+    },]
     const styles = makeStyles({
         lightModeText: {
             color: "black",

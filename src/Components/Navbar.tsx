@@ -44,14 +44,17 @@ const SiteNavbar = (props: any) => {
                 <Container>
 
                     <Navbar.Brand className={'ms-auto d-none d-sm-block'}>
-
                         Inventory
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
                     <Navbar.Collapse>
                         <Nav >
-                            <Nav.Link>Home</Nav.Link>
+                            <Nav.Link>
+                                <Link to={'/categorysearch'} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    Categories
+                                </Link>
+                            </Nav.Link>
                             <Nav.Link>
                                 <Link to={'/videoselection'} style={{ textDecoration: 'none', color: 'inherit' }}>
                                     Tutorials

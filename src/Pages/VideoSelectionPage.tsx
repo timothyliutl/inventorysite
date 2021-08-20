@@ -11,7 +11,7 @@ interface playListType {
     name: string,
     description?: string,
     imageURL?: string,
-    id: string, //has to match playlist id in js object in video plauer 
+    id: string, //has to match playlist id in js object in video player 
     tags?: Array<string>,
     //to be implemented once database is set up
     numVideos?: number
