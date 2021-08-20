@@ -30,11 +30,11 @@ const Navbarsm = (props: propTypes) => {
 
                     <div>
                         <Button onClick={props.darkmode} variant={props.darkmodeOn ? 'dark' : 'primary'}>
-                            {props.darkmodeOn ? <Icon.MoonStars></Icon.MoonStars> : <Icon.Sun></Icon.Sun>}
+                            {props.darkmodeOn ? <Icon.MoonStars style={{ color: "#04d9ff" }}></Icon.MoonStars> : <Icon.Sun></Icon.Sun>}
                         </Button>
 
 
-                        <Button variant={'outline-info'}>Login</Button>
+                        <Button variant={props.darkmodeOn ? 'outline-info' : 'primary'}>Login</Button>
                     </div>
 
                     <Navbar.Collapse>
