@@ -59,7 +59,7 @@ const InfoContainer = (props: input) => {
     const classes = styles();
 
     return (
-        <div className={classes.infoContainerStyle} style={{ maxWidth: "400px", minHeight: "300px" }}>
+        <div className={classes.infoContainerStyle} style={{ maxWidth: "400px", minHeight: "300px", marginLeft:'auto', marginRight:'auto' }}>
             {/* replace this with props value */}
             <Container>
                 {titleComponent(props.title)}

@@ -32,7 +32,6 @@ const ImageDisplay = (props:propsType) =>{
     
     const styles = makeStyles({
         ImageDisplay:{
-            height:'300px',
             textAlign:'center'
             
         },
@@ -74,13 +73,12 @@ const ImageDisplay = (props:propsType) =>{
     }
 
     return(
-        <div style={{height:'450px'}}>
+        <div style={{}}>
             <div className={classes.ImageDisplay}>
-                
-                <img style={{borderRadius:'20px', marginLeft:'auto', marginRight:'auto'}} src={image}></img>
+                <img style={{borderRadius:'20px', marginLeft:'auto', marginRight:'auto', width: '100%', maxWidth:'250px', marginBottom:'20px'}} src={image}></img>
             </div>
             <div className={classes.bottomGrid}>
-                <hr style={props.darkmodeOn?{marginTop:'0', color:'white', height:'2px'}:{marginTop:'0', height:"2px"}}></hr>
+                <hr style={props.darkmodeOn?{marginTop:'30px', color:'white', height:'2px', marginBottom:'15px'}:{marginTop:'0', height:"2px"}}></hr>
                 <Grid container direction={'row'} justifyContent='center' spacing={3}>
                     {testURLs.map((img)=>(
                             <Grid item>

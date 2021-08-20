@@ -71,7 +71,10 @@ const SiteNavbar = (props: propTypes) => {
                     <Container>
 
                         <Navbar.Brand className={'ms-auto d-none d-sm-block'}>
-                            Inventory
+                            <Link to={'/categorysearch'} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                Inventory
+                            </Link>
+                            
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
