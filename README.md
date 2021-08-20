@@ -1,7 +1,7 @@
 ## Inventory React
 
 ### Description
-The purpose of this project is to create a modern website to find items in the 5th floor lab in Stirling Hall. The goal by using React is to speed up development time and to make it easier for multiple developers to collaborate on the site.
+The purpose of this project is to create a modern website to find items in the 5th floor lab in Stirling Hall. The goal of this project is to speed up development time and to make it easier for multiple developers to collaborate on the site, by using React and typescript.
 
 ### Technology used
 This project uses React.JS for the frontend and a PHP api for the backend. Imports for this repository include MaterialUI, React-Player, and React-Bootstrap.
@@ -22,5 +22,5 @@ Not an exhaustive list, but a few things that should be worked on before fully d
 * An interface for admins. This would allow entries in the database to be edited without any programming experience and with less effort.
 * Advanced search features. Interface and components has been created, but logic has not been implemented.
 
-### Suggestions
+### Suggestions for future
 * Depending on how much the website needs to call the database, the developer may consider using Node.JS as the backend instead of PHP. This would simplify development as only one programming language would be used for frontend and backend development.
