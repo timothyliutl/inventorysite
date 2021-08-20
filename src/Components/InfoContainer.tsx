@@ -43,6 +43,7 @@ const InfoContainer = (props: input) => {
             backgroundColor:"#04d9ff"
         }
     })
+    //function for conditional rendering
     const titleComponent = (title:string) => {
         if (title) {
             return (

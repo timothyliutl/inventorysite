@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Nav, Navbar, Container, Button, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Icon from 'react-bootstrap-icons';
-import { makeStyles } from '@material-ui/core';
+import { Hidden, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Navbarsm from './Navbarsm';
 
-
-//TODO: make this nav bar responsive and add a dropdown 
-
-const SiteNavbar = (props: any) => {
+interface propTypes{
+    darkmodeOn: boolean, //tells component if darkmode is on
+    darkmode: any //function to toggle darkmode on and off
+}
+const SiteNavbar = (props: propTypes) => {
     const styles = makeStyles({
         lightModeText: {
             color: "black",
@@ -38,47 +40,72 @@ const SiteNavbar = (props: any) => {
     })
     const classes = styles();
 
-    return (
-        <div>
-            <Navbar bg={props.darkmodeOn ? 'dark' : 'primary'} expand="sm" variant={props.darkmodeOn ? 'dark' : 'light'}>
-                <Container>
+    const [isMobile, setIsMobile] = useState(false); //hook to see if window is mobile or not
+    //detect mobile at 575px
 
-                    <Navbar.Brand className={'ms-auto d-none d-sm-block'}>
-                        Inventory
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    const updateWindowSize = () => {
+        //updates hook based on window size
+        if (window.innerWidth <= 575) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    }
 
-                    <Navbar.Collapse>
-                        <Nav >
-                            <Nav.Link>
-                                <Link to={'/categorysearch'} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    Categories
-                                </Link>
-                            </Nav.Link>
-                            <Nav.Link>
-                                <Link to={'/videoselection'} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    Tutorials
-                                </Link>
+    useEffect(() => {
+        window.addEventListener('resize', updateWindowSize) //calls function each time window is resized
+    })
+    if (isMobile) {
+        return (
+            <div>
+                <Navbarsm darkmode={props.darkmode} darkmodeOn={props.darkmodeOn}></Navbarsm>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                {/*Idea is that we are using one navbar component to be show on mobile and another to be shown on larger screens */}
+                {/*To be used on larger screens */}
 
-                            </Nav.Link>
-                            <Nav.Link>FAQ</Nav.Link>
+                <Navbar bg={props.darkmodeOn ? 'dark' : 'primary'} expand="sm" variant={props.darkmodeOn ? 'dark' : 'light'}>
+                    <Container>
+
+                        <Navbar.Brand className={'ms-auto d-none d-sm-block'}>
+                            Inventory
+                        </Navbar.Brand>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+                        <Navbar.Collapse>
+                            <Nav >
+                                <Nav.Link>
+                                    <Link to={'/categorysearch'} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        Categories
+                                    </Link>
+                                </Nav.Link>
+                                <Nav.Link>
+                                    <Link to={'/videoselection'} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        Tutorials
+                                    </Link>
+
+                                </Nav.Link>
+                                <Nav.Link>FAQ</Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                        <Nav style={{ width: "100px" }}>
+
+                            <Button style={{ marginRight: "15px" }} onClick={props.darkmode} variant={props.darkmodeOn ? 'dark' : 'primary'}>
+                                {props.darkmodeOn ? <Icon.MoonStars style={{ color: "#04d9ff" }}></Icon.MoonStars> : <Icon.Sun></Icon.Sun>}
+                            </Button>
+                            <Button variant={props.darkmodeOn ? 'outline-info' : 'primary'}>Login</Button>
+
                         </Nav>
-                    </Navbar.Collapse>
-                    <Nav style={{ width: "100px" }}>
 
-                        <Button style={{ marginRight: "15px" }} onClick={props.darkmode} variant={props.darkmodeOn ? 'dark' : 'primary'}>
-                            {props.darkmodeOn ? <Icon.MoonStars style={{ color: "#04d9ff" }}></Icon.MoonStars> : <Icon.Sun></Icon.Sun>}
-                        </Button>
-                        <Button variant={props.darkmodeOn ? 'outline-info' : 'primary'}>Login</Button>
+                    </Container>
 
-                    </Nav>
-
-                </Container>
-
-            </Navbar>
-
-        </div>
-    )
+                </Navbar>
+            </div>
+        )
+    }
 
 
 }

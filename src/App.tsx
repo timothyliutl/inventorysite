@@ -17,6 +17,7 @@ import Footer from './Components/Footer';
 import TutorialVideoPage from './Pages/TutorialVideoPage';
 import VideoSelectionPage from './Pages/VideoSelectionPage';
 import AdminPage from './Pages/AdminPage';
+import Navbarsm from './Components/Navbarsm';
 
 
 class App extends Component<any, any>{
@@ -81,6 +82,9 @@ class App extends Component<any, any>{
             <SiteNavbar darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></SiteNavbar>
               <AdminPage darkmodeOn={this.state.darkMode}></AdminPage>
               <Footer darkmodeOn={this.state.darkMode}></Footer>
+            </Route>
+            <Route path={'/test'}>
+              <Navbarsm darkmodeOn={this.state.darkMode} darkmode={darkModeToggle}></Navbarsm>
             </Route>
           </Switch>
         </Router>
