@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SiteNavbar from './Components/Navbar';
-import HomePageContent from './homepage';
+import HomePageContent from './Pages/homepage';
 import {
   BrowserRouter as Router,
   Switch,

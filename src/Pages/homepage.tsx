@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 
-
+//Not currently in use, but here in case we want a more traditional welcome screen
 
 const HomePageContent = (props: any) => {
     const styles = makeStyles({
